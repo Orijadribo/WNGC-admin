@@ -1,5 +1,5 @@
 import React from 'react';
-import { logo } from '../../resources/images/images';
+import { logo ,course} from '../../resources/images/images';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -9,10 +9,14 @@ const Login = () => {
     navigate('/admin');
   };
   return (
-    <div className='flex items-center justify-center w-screen m-auto h-screen bg-[#F4F6F9]'>
+    <div
+      className='flex items-center justify-center w-screen m-auto h-screen bg-[#F4F6F9]'
+      style={{ backgroundImage: `url(${course})`, backgroundSize: 'cover' }}
+    >
       <div className='flex flex-col items-center justify-center rounded-lg w-[400px] bg-[#FFFFFF] p-14 shadow-xl'>
         <div className='flex flex-col items-center justify-center w-1/2'>
           <img className='w-32' src={logo} alt='WNGC Logo' />
+          {/* <img className='w-32' src={course} alt='WNGC Logo' /> */}
           <h1 className='py-5 font-medium font-titleFont text-center text-xl'>
             WNGC Admin Login
           </h1>
