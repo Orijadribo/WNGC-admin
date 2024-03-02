@@ -4,12 +4,15 @@ const TournamentDetails = ({ closeTournamentModal }) => {
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75'>
       <div className='bg-white p-10 w-[50%] rounded-lg flex flex-col gap-5'>
-        <div className='flex justify-end cursor-pointer' onClick={closeTournamentModal}>
+        <div
+          className='flex justify-end cursor-pointer'
+          onClick={closeTournamentModal}
+        >
           <div className='border'>
             <p>close</p>
           </div>
         </div>
-        <h2 className='text-center'>Add Tournament</h2>
+        <h2 className='text-center'>Create Tournament</h2>
         <div className='flex justify-between gap-5'>
           <div className='flex flex-col gap-2 w-[100%]'>
             <label className=''>Tournament Name:</label>
@@ -36,7 +39,7 @@ const TournamentDetails = ({ closeTournamentModal }) => {
             className='border rounded-md p-2'
             onClick={closeTournamentModal}
           >
-            Create Draw
+            Select Draw
           </button>
         </div>
         <textarea
