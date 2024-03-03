@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react';import { IoClose } from 'react-icons/io5';
+
 
 const AddPlayer = ({ closePlayersModal }) => {
   return (
@@ -8,8 +9,8 @@ const AddPlayer = ({ closePlayersModal }) => {
           className='flex justify-end cursor-pointer'
           onClick={closePlayersModal}
         >
-          <div className='border'>
-            <p>close</p>
+          <div className=''>
+            <IoClose />
           </div>
         </div>
         <h2 className='text-center'>Add Player</h2>
