@@ -2,6 +2,9 @@ import React from 'react';import { IoClose } from 'react-icons/io5';
 
 
 const AddPlayer = ({ closePlayersModal }) => {
+const [firstName, setFirstName] = useState('')
+
+
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75'>
       <div className='bg-white p-10 w-[50%] rounded-lg flex flex-col gap-5'>
