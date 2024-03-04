@@ -43,9 +43,12 @@ const AddPlayer = ({ closePlayersModal }) => {
         <h2 className='text-center'>Add Player</h2>
         <div className='flex justify-between gap-5'>
           <div className='flex flex-col gap-2 w-[50%]'>
-            <label className=''>First Name:</label>
+            <label htmlFor='firstName' className=''>
+              First Name:
+            </label>
             <input
               className='border p-2 rounded-md'
+              name='firstName'
               type='text'
               placeholder='First Name'
               value={firstName}
@@ -53,9 +56,10 @@ const AddPlayer = ({ closePlayersModal }) => {
             />
           </div>
           <div className='flex flex-col gap-2 w-[50%]'>
-            <label>Last Name:</label>
+            <label htmlFor='lastName'>Last Name:</label>
             <input
               type='text'
+              name='lastName'
               className='border  p-2 rounded-md'
               placeholder='Last Name'
               value={lastName}
@@ -64,7 +68,7 @@ const AddPlayer = ({ closePlayersModal }) => {
           </div>
         </div>
         <div className='flex flex-row items-center gap-2'>
-          <label>Gender:</label>
+          <label htmlFor='gender'>Gender:</label>
           <div className='flex flex-row items-center justify-center gap-2 ml-5'>
             <input
               type='radio'
@@ -91,9 +95,10 @@ const AddPlayer = ({ closePlayersModal }) => {
           </div>
         </div>
         <div className='flex flex-col gap-2'>
-          <label>Handicap Index:</label>
+          <label htmlFor='handicapIndex'>Handicap Index:</label>
           <input
             type='number'
+            name='handicapIndex'
             className='border  p-2 rounded-md'
             placeholder='Handicap Index'
             value={handicapIndex}
