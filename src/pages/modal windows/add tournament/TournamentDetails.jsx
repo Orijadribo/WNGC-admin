@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import db from '../../../api/firebaseConfig';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, getDocs } from 'firebase/firestore';
 
 const TournamentDetails = ({ closeTournamentModal }) => {
   const [tournamentName, setTournamentName] = useState('');
   const [tournamentDate, setTournamentDate] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
   const [tournamentDetails, setTournamentDetails] = useState('');
+  const [draws, setDraws] = useState([]);
 
   const tournamentsCollectionRef = collection(db, 'tournaments');
+  const drawsCollectionRef = collection(db, 'draw');
 
   const handleSelectChange = (event) => {
     setSelectedValue(event.target.value);
@@ -37,6 +39,23 @@ const TournamentDetails = ({ closeTournamentModal }) => {
       console.error(err);
     }
   };
+
+  const getDraws = async () => {
+    try {
+      const data = await getDocs(drawsCollectionRef);
+      const drawData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setDraws(drawData);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getDraws();
+  }, []);
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75'>
@@ -81,9 +100,11 @@ const TournamentDetails = ({ closeTournamentModal }) => {
             className='border p-2 rounded-md'
           >
             <option value=''>-- Choose an option --</option>
-            <option value='option1'>Option 1</option>
-            <option value='option2'>Option 2</option>
-            <option value='option3'>Option 3</option>
+            {draws.map((draw) => (
+              <option key={draw.id} value={draw.id}>
+                {draw.id}
+              </option>
+            ))}
           </select>
         </div>
         <textarea

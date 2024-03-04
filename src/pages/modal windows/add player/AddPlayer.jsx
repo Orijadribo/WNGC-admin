@@ -49,6 +49,7 @@ const AddPlayer = ({ closePlayersModal }) => {
             <input
               className='border p-2 rounded-md'
               name='firstName'
+              id='firstName'
               type='text'
               placeholder='First Name'
               value={firstName}
@@ -60,6 +61,7 @@ const AddPlayer = ({ closePlayersModal }) => {
             <input
               type='text'
               name='lastName'
+              id='lastName'
               className='border  p-2 rounded-md'
               placeholder='Last Name'
               value={lastName}
@@ -68,12 +70,12 @@ const AddPlayer = ({ closePlayersModal }) => {
           </div>
         </div>
         <div className='flex flex-row items-center gap-2'>
-          <label htmlFor='gender'>Gender:</label>
+          <p>Gender:</p>
           <div className='flex flex-row items-center justify-center gap-2 ml-5'>
             <input
               type='radio'
               id='male'
-              name='gender'
+              name='male'
               value='male'
               checked={gender === 'male'}
               onChange={() => setGender('male')}
@@ -84,7 +86,7 @@ const AddPlayer = ({ closePlayersModal }) => {
             <input
               type='radio'
               id='female'
-              name='gender'
+              name='female'
               value='female'
               checked={gender === 'female'}
               onChange={() => setGender('female')}
@@ -99,6 +101,7 @@ const AddPlayer = ({ closePlayersModal }) => {
           <input
             type='number'
             name='handicapIndex'
+            id='handicapIndex'
             className='border  p-2 rounded-md'
             placeholder='Handicap Index'
             value={handicapIndex}
