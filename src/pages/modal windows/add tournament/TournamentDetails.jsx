@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import db from '../../../api/firebaseConfig';
-import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { addDoc, collection, getDocs, doc, setDoc } from 'firebase/firestore';
 
 const TournamentDetails = ({ closeTournamentModal }) => {
   const [tournamentName, setTournamentName] = useState('');
@@ -28,12 +28,13 @@ const TournamentDetails = ({ closeTournamentModal }) => {
       alert('Please fill in all fields');
       return;
     }
+
     try {
-      await addDoc(tournamentsCollectionRef, {
+      const tournamentRef = doc(tournamentsCollectionRef, tournamentName);
+      await setDoc(tournamentRef, {
         date: tournamentDate,
         details: tournamentDetails,
         draw: selectedValue,
-        tournamentName: tournamentName,
       });
     } catch (err) {
       console.error(err);

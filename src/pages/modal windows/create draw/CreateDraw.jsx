@@ -11,7 +11,6 @@ const CreateDraw = ({ closeCreateDraw }) => {
   const [drawName, setDrawName] = useState('');
 
   const playersCollectionRef = collection(db, 'players');
-  const drawRef = doc(db, 'draw', drawName);
 
   const handleAddPlayer = () => {
     if (!playerName || !teeTime) {
@@ -32,6 +31,7 @@ const CreateDraw = ({ closeCreateDraw }) => {
   const handleCreateDraw = async () => {
     // Add the entire draw array to the 'draw' collection in Firestore
     try {
+      const drawRef = doc(db, 'draw', drawName);
       await setDoc(drawRef, { draw: draw });
       console.log('Draw created successfully:', draw);
     } catch (err) {

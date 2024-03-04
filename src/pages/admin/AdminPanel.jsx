@@ -7,8 +7,6 @@ import Home from './Home';
 const AdminPanel = () => {
   const [selectedScreen, setSelectedScreen] = useState('home');
 
-  console.log(selectedScreen);
-
   return (
     <div className='flex flex-col'>
       <div className='border py-3 px-10'>
