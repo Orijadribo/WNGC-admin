@@ -1,9 +1,33 @@
-import React from 'react';import { IoClose } from 'react-icons/io5';
-
+import React, { useState } from 'react';
+import { IoClose } from 'react-icons/io5';
+import db from '../../../api/firebaseConfig';
+import { addDoc, collection } from 'firebase/firestore';
 
 const AddPlayer = ({ closePlayersModal }) => {
-const [firstName, setFirstName] = useState('')
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [gender, setGender] = useState('male');
+  const [handicapIndex, setHandicapIndex] = useState('');
 
+  const playersCollectionRef = collection(db, 'players');
+
+  const handlePlayerAdd = async () => {
+    if (!firstName || !lastName || !gender || !handicapIndex) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    try {
+      await addDoc(playersCollectionRef, {
+        firstName: firstName,
+        lastName: lastName,
+        gender: gender,
+        handicapIndex: handicapIndex,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75'>
@@ -24,6 +48,8 @@ const [firstName, setFirstName] = useState('')
               className='border p-2 rounded-md'
               type='text'
               placeholder='First Name'
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
           <div className='flex flex-col gap-2 w-[50%]'>
@@ -32,19 +58,33 @@ const [firstName, setFirstName] = useState('')
               type='text'
               className='border  p-2 rounded-md'
               placeholder='Last Name'
-              // value={tournamentDate}
-              // onChange={(e) => setTournamentDate(e.target.value)}
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
         </div>
         <div className='flex flex-row items-center gap-2'>
           <label>Gender:</label>
           <div className='flex flex-row items-center justify-center gap-2 ml-5'>
-            <input type='checkbox' id='male' name='male' value='Male' />
+            <input
+              type='radio'
+              id='male'
+              name='gender'
+              value='male'
+              checked={gender === 'male'}
+              onChange={() => setGender('male')}
+            />
             <label className='' htmlFor='male'>
               Male
             </label>
-            <input type='checkbox' id='female' name='female' value='Female' />
+            <input
+              type='radio'
+              id='female'
+              name='gender'
+              value='female'
+              checked={gender === 'female'}
+              onChange={() => setGender('female')}
+            />
             <label className='' htmlFor='female'>
               Female
             </label>
@@ -56,18 +96,21 @@ const [firstName, setFirstName] = useState('')
             type='number'
             className='border  p-2 rounded-md'
             placeholder='Handicap Index'
-            // value={tournamentDate}
-            // onChange={(e) => setTournamentDate(e.target.value)}
+            value={handicapIndex}
+            onChange={(e) => setHandicapIndex(e.target.value)}
           />
         </div>
         <div className='flex flex-row items-center justify-center gap-2'>
           <button
             className='border rounded-md p-2 w-[50%]'
-            onClick={closePlayersModal}
+            onClick={handlePlayerAdd}
           >
             Add Player
           </button>
-          <button className='border rounded-md p-2 w-[50%]' onClick={() => {}}>
+          <button
+            className='border rounded-md p-2 w-[50%]'
+            onClick={handlePlayerAdd}
+          >
             Add Another Player
           </button>
         </div>
