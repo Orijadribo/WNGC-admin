@@ -61,11 +61,8 @@ const TournamentDetails = ({ closeTournamentModal }) => {
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75'>
       <div className='bg-white p-10 w-[50%] rounded-lg flex flex-col gap-5'>
-        <div
-          className='flex justify-end cursor-pointer'
-          onClick={closeTournamentModal}
-        >
-          <div className=''>
+        <div className='flex justify-end'>
+          <div className='cursor-pointer' onClick={closeTournamentModal}>
             <IoClose />
           </div>
         </div>
