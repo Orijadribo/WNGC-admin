@@ -35,6 +35,7 @@ const TournamentDetails = ({ closeTournamentModal }) => {
         date: tournamentDate,
         details: tournamentDetails,
         draw: selectedValue,
+        scores: {},
       });
     } catch (err) {
       console.error(err);
